@@ -1,0 +1,21 @@
+{
+  "name": "volun_backend",
+  "version": "1.0.0",
+  "description": "Backend of VolUN project",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "nodemon app.js",
+    "start-server": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "jest": "^29.2.0",
+    "nodemon": "^2.0.20"
+  }
+}

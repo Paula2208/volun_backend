@@ -1,3 +1,6 @@
+//import express from 'express'
+//import cors from 'cors'
+
 const express = require('express');
 const cors = require('cors')
 const app = express();
@@ -36,5 +39,9 @@ app.use('/v1', statisticsRouter);
 app.get('/', function (req, res) {
     res.send('Welcome to volUN - Backend listening...');
   });
+
+app.get('/login', function (req, res) {
+  res.send('Logging in');
+});
 
 module.exports = app;

@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Backend of VolUN project",
   "main": "index.js",
+  "type": "commonjs",
   "scripts": {
+    "dev": "nodemon index.js",
     "test": "jest",
     "start": "nodemon app.js",
     "start-server": "node index.js"

@@ -1,4 +1,8 @@
+const express = require('express');
 const router = require('express').Router();
+
+const pool = require('../database');
+
 const {
     changePassword,
     createUser,

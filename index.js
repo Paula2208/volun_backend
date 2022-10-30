@@ -3,7 +3,7 @@ const cors = require('cors')
 const app = express();
 
 const PORT = 2022;
-app.use(cors());    
+app.use(cors());
 
 function onStart(){
     console.log(`Server running on port ${PORT} - CORS-enabled`);
@@ -19,6 +19,29 @@ app.use(express.urlencoded({extended: true}));
 //Modulo de Inicio de sesion
 const authRouter = require('./src/routes/auth');
 
+
+
+/*app.post('/auth/user', (req,res) =>{
+  const name = req.body.name;
+  const lastName = req.body.lastName;
+  const email = req.body.email;
+  const cellphoneNumber = req.body.cellphoneNumber;
+  const password = req.body.password;
+  const accountType = req.body.accountType;
+
+  db.query(
+    "INSERT INTO voluntarios (name,lastName,email,cellphoneNumber,password,accountType)VALUES(?,?,?,?,?,?)",
+   [name,lastName,email,cellphoneNumber,password,accountType],
+    (err,result) => {
+    if(err){
+      console.log(err);
+      } else {
+        res.send("Values inserted");
+      }
+    });
+
+});*/
+
 //CRUD de Ofertas
 const offersRouter = require('./src/routes/offers');
 
@@ -27,6 +50,8 @@ const reportsRouter = require('./src/routes/reports');
 
 //Analisis y tendencias
 const statisticsRouter = require('./src/routes/statistics');
+//const { default: Signup } = require('../../volUN-master/volUN-master/src/containers/Signup/Signup');
+
 
 app.use('/v1', authRouter);
 app.use('/v1', offersRouter);
@@ -35,6 +60,6 @@ app.use('/v1', statisticsRouter);
 
 app.get('/', function (req, res) {
     res.send('Welcome to volUN - Backend listening...');
-  });
+});
 
 module.exports = app;

@@ -20,28 +20,6 @@ app.use(express.urlencoded({extended: true}));
 const authRouter = require('./src/routes/auth');
 
 
-
-/*app.post('/auth/user', (req,res) =>{
-  const name = req.body.name;
-  const lastName = req.body.lastName;
-  const email = req.body.email;
-  const cellphoneNumber = req.body.cellphoneNumber;
-  const password = req.body.password;
-  const accountType = req.body.accountType;
-
-  db.query(
-    "INSERT INTO voluntarios (name,lastName,email,cellphoneNumber,password,accountType)VALUES(?,?,?,?,?,?)",
-   [name,lastName,email,cellphoneNumber,password,accountType],
-    (err,result) => {
-    if(err){
-      console.log(err);
-      } else {
-        res.send("Values inserted");
-      }
-    });
-
-});*/
-
 //CRUD de Ofertas
 const offersRouter = require('./src/routes/offers');
 

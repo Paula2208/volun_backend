@@ -43,15 +43,15 @@ const logIn = async(req, res) => {
     if(rows.length>0){
       const user = rows[0];
       if(password==user.password){
-        res.send('Loggin in');
+        res.send(true);
       }
       else{
-        res.send('credenciales incorrectas');
+        res.send(false);
       }
   
     }
     else{
-      res.send('el usuario no existe');
+      res.send(false);
     }
 }
 

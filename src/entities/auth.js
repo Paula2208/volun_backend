@@ -60,7 +60,7 @@ const createUser = (req, res, next) => {
 const logIn = async(req, res) => {
     const username = req.body.username;
     const password = req.body.password;
-    const rows = await pool.query('SELECT * fROM users WHERE username = ?',[username]);
+    const rows = await pool.query('SELECT * fROM Usuarios WHERE username = ?',[username]);
     if(rows.length>0){
       const user = rows[0];
       if(password==user.password){

@@ -3,7 +3,7 @@ const changePassword = (req, res, next) => {
 
     const body = req.body;
     const query= req.query;
-    
+
     res.json({
         body,
         query
@@ -11,12 +11,32 @@ const changePassword = (req, res, next) => {
     res.status(201).send();
 }
 
+const createUser = (req, res, next) => {
+    const name = req.body.name;
+    const lastName = req.body.lastName;
+    const email = req.body.email;
+    const cellphoneNumber = req.body.cellphoneNumber;
+    const password = req.body.password;
+    const username = req.body.username;
+    const accountType = req.body.accountType;
+
+    db.query(
+        "INSERT INTO Usuarios (name,lastName,email,cellphoneNumber,username,password,accountType)VALUES(?,?,?,?,?,?,?)",
+        [name,lastName,email,cellphoneNumber,username,password,accountType],
+        (err,result) => {
+            if(err){
+                console.log(err);
+            } else {
+                res.send("Values inserted");
+            }
+        });
+}
 
 const sendCodeNumber = (req, res, next) => {
 
     const body = req.body;
     const query= req.query;
-    
+
     res.json({
         body,
         query
@@ -28,7 +48,7 @@ const functionTemplate = (req, res, next) => {
 
     const body = req.body;
     const query= req.query;
-    
+
     res.json({
         body,
         query

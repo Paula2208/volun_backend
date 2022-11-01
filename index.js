@@ -4,8 +4,9 @@ const cors = require('cors')
 const jwt = require('jsonwebtoken');
 const app = express();
 
+
 const PORT = 2022;
-app.use(cors());    
+app.use(cors());
 
 function onStart(){
     console.log(`Server running on port ${PORT} - CORS-enabled`);
@@ -20,6 +21,7 @@ app.use(express.urlencoded({extended: true}));
 
 //Modulo de Inicio de sesion
 const authRouter = require('./src/routes/auth');
+
 
 //CRUD de Ofertas
 const offersRouter = require('./src/routes/offers');

@@ -20,7 +20,7 @@ const createUser = (req, res, next) => {
     const username = req.body.username;
     const accountType = req.body.accountType;
 
-    db.query(
+    pool.query(
         "INSERT INTO Usuarios (name,lastName,email,cellphoneNumber,username,password,accountType)VALUES(?,?,?,?,?,?,?)",
         [name,lastName,email,cellphoneNumber,username,password,accountType],
         (err,result) => {

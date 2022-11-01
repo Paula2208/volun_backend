@@ -2,9 +2,9 @@
 const mysql= require('mysql');
 const db = mysql.createConnection({
     user: 'admin',
-    host:'database-2.cxc4tmxww597.us-east-1.rds.amazonaws.com',
+    host:'database-1.ccgnkutt75yl.us-east-1.rds.amazonaws.com',
     password: 'Volun123!',
-    database: 'Usuarios'
+    database: 'Volun'
 });
 
 const changePassword = (req, res, next) => {
@@ -25,11 +25,12 @@ const createUser = (req, res, next) => {
     const email = req.body.email;
     const cellphoneNumber = req.body.cellphoneNumber;
     const password = req.body.password;
+    const username = req.body.username;
     const accountType = req.body.accountType;
 
     db.query(
-        "INSERT INTO voluntarios (name,lastName,email,cellphoneNumber,password,accountType)VALUES(?,?,?,?,?,?)",
-        [name,lastName,email,cellphoneNumber,password,accountType],
+        "INSERT INTO Usuarios (name,lastName,email,cellphoneNumber,username,password,accountType)VALUES(?,?,?,?,?,?,?)",
+        [name,lastName,email,cellphoneNumber,username,password,accountType],
         (err,result) => {
             if(err){
                 console.log(err);

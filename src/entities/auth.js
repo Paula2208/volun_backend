@@ -1,9 +1,9 @@
-
+const pool = require('../database');
 const changePassword = (req, res, next) => {
 
     const body = req.body;
     const query= req.query;
-    
+
     res.json({
         body,
         query
@@ -12,22 +12,31 @@ const changePassword = (req, res, next) => {
 }
 
 const createUser = (req, res, next) => {
+    const name = req.body.name;
+    const lastName = req.body.lastName;
+    const email = req.body.email;
+    const cellphoneNumber = req.body.cellphoneNumber;
+    const password = req.body.password;
+    const username = req.body.username;
+    const accountType = req.body.accountType;
 
-    const body = req.body;
-    const query= req.query;
-    
-    res.json({
-        body,
-        query
-    })
-    res.status(201).send();
+    pool.query(
+        "INSERT INTO Usuarios (name,lastName,email,cellphoneNumber,username,password,accountType)VALUES(?,?,?,?,?,?,?)",
+        [name,lastName,email,cellphoneNumber,username,password,accountType],
+        (err,result) => {
+            if(err){
+                console.log(err);
+            } else {
+                res.send("Values inserted");
+            }
+        });
 }
 
 const sendCodeNumber = (req, res, next) => {
 
     const body = req.body;
     const query= req.query;
-    
+
     res.json({
         body,
         query
@@ -39,7 +48,7 @@ const functionTemplate = (req, res, next) => {
 
     const body = req.body;
     const query= req.query;
-    
+
     res.json({
         body,
         query
@@ -47,16 +56,23 @@ const functionTemplate = (req, res, next) => {
     res.status(201).send();
 }
 
-const logIn = (req, res, next) => {
-
-    const body = req.body;
-    const query= req.query;
-    
-    res.json({
-        body,
-        query
-    })
-    res.status(201).send();
+const logIn = async(req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
+    const rows = await pool.query('SELECT * fROM Usuarios WHERE username = ?',[username]);
+    if(rows.length>0){
+      const user = rows[0];
+      if(password==user.password){
+        res.send(true);
+      }
+      else{
+        res.send(false);
+      }
+  
+    }
+    else{
+      res.send(false);
+    }
 }
 
 module.exports = {

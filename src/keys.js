@@ -1,8 +1,9 @@
 module.exports = {
     database: {
-        host: 'localhost',
-        user: 'root',
-        password: '12345',
-        database: 'nodelogin'
+
+        host: 'database-1.ccgnkutt75yl.us-east-1.rds.amazonaws.com',
+        user: 'admin',
+        password: 'Volun123!',
+        database: 'Volun'
     }
 }

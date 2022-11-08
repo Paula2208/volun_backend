@@ -34,6 +34,23 @@ const createOferta = (req, res, next) => {
         });
 }
 
+const deleteOferta = (req, res, next) => {
+    const id = req.body.id;
+
+
+    pool.query(
+        "DELETE FROM Ofertas WHERE id= ?",[id],
+        (err,result) => {
+            if(err){
+                console.log(err);
+            } else {
+                res.send("Post deleted");
+            }
+        });
+}
+
+
 module.exports = {
     createOferta,
+    deleteOferta
 }

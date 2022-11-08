@@ -1,12 +1,16 @@
 const router = require('express').Router();
 
 const {
-    createOferta
+    createOferta,
+    deleteOferta
 } = require('../entities/offers')
 
 
 
-router.route('/offers')
-      .post(createOferta);      
+router.route('/offers/create')
+      .post(createOferta);
+      
+router.route('/offers/delete')
+      .post(deleteOferta);  
 
 module.exports = router;

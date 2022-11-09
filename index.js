@@ -44,7 +44,7 @@ app.get('/', function (req, res) {
 });
   
 
-
+/*
 module.exports = app;
 const createTrans=()=>{
   var transport = nodemailer.createTransport({
@@ -194,4 +194,4 @@ app.post('/forgot-password',async(req,res)=>{
 
     }
   })
-})
+});*/

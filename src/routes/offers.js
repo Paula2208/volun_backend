@@ -1,9 +1,16 @@
 const router = require('express').Router();
+
 const {
-    functionTemplate
+    createOferta,
+    deleteOferta
 } = require('../entities/offers')
 
-router.route('/')
-      .get(functionTemplate);
+
+
+router.route('/offers/create')
+      .post(createOferta);
+      
+router.route('/offers/delete')
+      .post(deleteOferta);  
 
 module.exports = router;

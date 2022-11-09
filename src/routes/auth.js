@@ -1,4 +1,5 @@
 const router = require('express').Router();
+
 const {
     changePassword,
     createUser,
@@ -7,7 +8,7 @@ const {
 } = require('../entities/auth')
 
 router.route('/auth')
-      .get(logIn);
+      .post(logIn);
 
 router.route('/auth/user')
       .post(createUser);

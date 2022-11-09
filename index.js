@@ -1,7 +1,10 @@
+
 const express = require('express');
 const cors = require('cors')
+const jwt = require('jsonwebtoken');
 const app = express();
 const nodemailer=require("nodemailer")
+
 
 const PORT = 2022;
 app.use(cors());
@@ -20,6 +23,7 @@ app.use(express.urlencoded({extended: true}));
 //Modulo de Inicio de sesion
 const authRouter = require('./src/routes/auth');
 
+
 //CRUD de Ofertas
 const offersRouter = require('./src/routes/offers');
 
@@ -28,6 +32,7 @@ const reportsRouter = require('./src/routes/reports');
 
 //Analisis y tendencias
 const statisticsRouter = require('./src/routes/statistics');
+const pool = require('./src/database');
 
 app.use('/v1', authRouter);
 app.use('/v1', offersRouter);
@@ -35,8 +40,10 @@ app.use('/v1', reportsRouter);
 app.use('/v1', statisticsRouter);
 
 app.get('/', function (req, res) {
-    res.send('Welcome to volUN - Backend listening...');
-  });
+  res.send('Welcome to volUN - Backend listening...');
+});
+  
+
 
 module.exports = app;
 const createTrans=()=>{

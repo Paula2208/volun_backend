@@ -2,7 +2,8 @@ const router = require('express').Router();
 
 const {
     createOferta,
-    deleteOferta
+    deleteOferta,
+    getOfertas
 } = require('../entities/offers')
 
 
@@ -12,5 +13,8 @@ router.route('/offers/create')
       
 router.route('/offers/delete')
       .post(deleteOferta);  
+
+router.route('/offers/get')
+      .get(getOfertas);      
 
 module.exports = router;

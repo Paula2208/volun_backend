@@ -49,8 +49,19 @@ const deleteOferta = (req, res, next) => {
         });
 }
 
+const getOfertas = async(req, res) => {
+    pool.query("SELECT * FROM Ofertas", (err,result) => {
+        if (err){
+            console.log(err)
+        } else {
+            res.send(result)
+        }
+    })
+
+}
 
 module.exports = {
     createOferta,
-    deleteOferta
+    deleteOferta,
+    getOfertas
 }

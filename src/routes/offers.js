@@ -12,13 +12,13 @@ const {
 router.route('/offers/create')
       .post(createOferta);
       
-router.route('/offers/delete')
+router.route('/offers/delete/:id')
       .delete(deleteOferta);  
 
 router.route('/offers/get')
       .get(getOfertas);    
       
-router.route('/offers/update')
+router.route('/offers/update/:id')
       .put(updateOferta);          
 
 module.exports = router;

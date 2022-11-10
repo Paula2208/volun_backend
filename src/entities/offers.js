@@ -60,6 +60,18 @@ const getOfertas = async(req, res) => {
 
 }
 
+const getOrganizationList = async(req, res) => {
+    const category = req.param.id;
+    pool.query("SELECT * FROM Ofertas where category=?",[category], (err,result) => {
+        if (err){
+            console.log(err)
+        } else {
+            res.send(result)
+        }
+    })
+
+}
+
 const updateOferta = (req, res, next) => {
     const title = req.body.title;
     const description = req.body.description;
@@ -87,5 +99,5 @@ module.exports = {
     createOferta,
     deleteOferta,
     getOfertas,
-    updateOferta
+    updateOferta,
 }

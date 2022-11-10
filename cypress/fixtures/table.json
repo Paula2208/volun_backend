@@ -1,0 +1,65 @@
+[
+  {
+    "name": "Angie",
+    "lastName": "Velosa",
+    "email": "avelosa@mail.com",
+    "cellphoneNumber": "3214568778",
+    "password": "1234",
+    "accountType": "Estudiante",
+    "username": "avelosa"
+  },
+  {
+    "name": "Danny",
+    "lastName": "Acosta",
+    "email": "dacosta@mail.com",
+    "cellphoneNumber": "3024572881",
+    "password": "12345",
+    "accountType": "Voluntario",
+    "username": "dacosta"
+  },
+  {
+    "name": "dylan ",
+    "lastName": "rivero",
+    "email": "dmriveroe@gmail.com",
+    "cellphoneNumber": "3232887384",
+    "password": "test123",
+    "accountType": "Voluntario",
+    "username": "dmriveroe"
+  },
+  {
+    "name": "fdss",
+    "lastName": "fsdfsdf",
+    "email": "sdfs",
+    "cellphoneNumber": "dfsdfsd",
+    "password": "dfsdf",
+    "accountType": "sdfsdfsd",
+    "username": "fsdfs"
+  },
+  {
+    "name": "pepito",
+    "lastName": "perez",
+    "email": "p@hmail.com",
+    "cellphoneNumber": "554556456",
+    "password": "1234",
+    "accountType": "voluntario",
+    "username": "pepito"
+  },
+  {
+    "name": "test4",
+    "lastName": "test4",
+    "email": "test4",
+    "cellphoneNumber": "test4",
+    "password": "test4",
+    "accountType": "Voluntario",
+    "username": "test4"
+  },
+  {
+    "name": "test5",
+    "lastName": "test5",
+    "email": "test5",
+    "cellphoneNumber": "test5",
+    "password": "test5",
+    "accountType": "test5",
+    "username": "test5"
+  }
+]

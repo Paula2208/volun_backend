@@ -10,6 +10,11 @@
     "start": "nodemon app.js",
     "start-server": "node index.js"
   },
+  "eslintConfig": {
+    "extends": [
+      "plugin:cypress/recommended"
+    ]
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -32,6 +37,7 @@
     "timeago.js": "^4.0.2"
   },
   "devDependencies": {
+    "cypress": "^10.11.0",
     "jest": "^29.2.0",
     "nodemon": "^2.0.20"
   }

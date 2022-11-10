@@ -61,9 +61,20 @@ const getOfertas = async(req, res) => {
 
 }
 
+const getOfertasByCategory = async(req, res) => {
+    const category = req.params.category;
+    pool.query("SELECT * FROM Ofertas where category=?", category, (err,result) => {
+        if (err){
+            console.log(err)
+        } else {
+            res.send(result)
+        }
+    })
+
+}
+
 const getOrganizationList = async(req, res) => {
-    const category = req.params.id;
-    pool.query("SELECT * FROM Ofertas where category=?",[category], (err,result) => {
+    pool.query("SELECT nonProfitName FROM Ofertas", (err,result) => {
         if (err){
             console.log(err)
         } else {

@@ -4,7 +4,9 @@ const {
     createOferta,
     deleteOferta,
     getOfertas,
-    updateOferta
+    updateOferta,
+    getOfertasByCategory,
+    getOrganizationList
 } = require('../entities/offers')
 
 
@@ -17,6 +19,12 @@ router.route('/offers/delete/:id')
 
 router.route('/offers/get')
       .get(getOfertas);    
+
+router.route('/offers/getOfertasByCategory/:category')
+      .get(getOfertasByCategory);   
+      
+router.route('/offers/getOrganizationList')
+      .get(getOrganizationList);  
       
 router.route('/offers/update/:id')
       .put(updateOferta);          

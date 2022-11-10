@@ -183,6 +183,31 @@ const forgotPassword = async(req,res)=>{
           res.json({"Error":"email errado"})
         }
   
+const userType = async(req, res) => {
+    const username = req.params.username;
+    const rows = await pool.query('select name, lastName, accountType from Usuarios where username = ?',[username]);
+    if(rows.length>0){
+      const user = rows[0];
+      res.send(user); 
+    }
+    else{
+      res.send(false);
+    }
+}
+
+const applyToOferta = async(req, res) => {
+    const username = req.body.username;
+    const id = req.body.Ofertas.id;
+    const rows = await pool.query('select Usuarios.name, Ofertas.title from Usuarios, Ofertas where Usuarios.username = ? and Ofertas.id = ?',
+    [username,id]);
+    if(rows.length>0){
+      res.send(true); 
+    }
+    else{
+      res.send(false);
+    }
+}
+
       }
     })
   }
@@ -193,5 +218,7 @@ module.exports = {
     forgotPassword,
 
 
-    
+    ,
+    userType,
+    applyToOferta
 }

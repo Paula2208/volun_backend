@@ -5,11 +5,20 @@ const {
     createUser,
     sendCodeNumber,
     sendMail,
-    logIn
+    logIn,
+    userType,
+    applyToOferta
+
 } = require('../entities/auth')
 
 router.route('/auth')
       .post(logIn);
+
+router.route('/auth/:username')
+      .get(userType);
+
+router.route('/auth/apply')
+      .post(applyToOferta);
 
 router.route('/auth/user')
       .post(createUser);

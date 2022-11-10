@@ -181,7 +181,11 @@ const forgotPassword = async(req,res)=>{
   
         }else{
           res.json({"Error":"email errado"})
-        }
+            }
+         }
+    })
+};
+
   
 const userType = async(req, res) => {
     const username = req.params.username;
@@ -193,7 +197,7 @@ const userType = async(req, res) => {
     else{
       res.send(false);
     }
-}
+};
 
 const applyToOferta = async(req, res) => {
     const username = req.body.username;
@@ -206,19 +210,16 @@ const applyToOferta = async(req, res) => {
     else{
       res.send(false);
     }
-}
+};
 
-      }
-    })
-  }
+      
+    
+  
 
 module.exports = {
     createUser,
     logIn,
     forgotPassword,
-
-
-    ,
     userType,
-    applyToOferta
+    applyToOferta,
 }

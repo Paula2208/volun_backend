@@ -35,9 +35,7 @@ const createOferta = (req, res, next) => {
 }
 
 const deleteOferta = (req, res, next) => {
-    const id = req.param.id;
-
-
+    const id = req.params.id;
     pool.query(
         "DELETE FROM Ofertas WHERE id= ?",id,
         (err,result) => {
@@ -61,7 +59,7 @@ const getOfertas = async(req, res) => {
 }
 
 const getOrganizationList = async(req, res) => {
-    const category = req.param.id;
+    const category = req.params.id;
     pool.query("SELECT * FROM Ofertas where category=?",[category], (err,result) => {
         if (err){
             console.log(err)
@@ -81,7 +79,7 @@ const updateOferta = (req, res, next) => {
     const category = req.body.category;
     const image = req.body.image;
     const nonProfitUsername = req.body.nonProfitUsername
-    const id = req.param.id;
+    const id = req.params.id;
 
     pool.query( 
         "UPDATE Ofertas SET title=?,description=?,location=?, date=?,time=?,category=?,image=?,nonProfitUsername=? Where id=?",

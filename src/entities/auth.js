@@ -76,8 +76,8 @@ const logIn = async(req, res) => {
 }
 
 const userType = async(req, res) => {
-    const username = req.body.username;
-    const rows = await pool.query('select name, accountType from Usuarios where username = ?',[username]);
+    const username = req.params.username;
+    const rows = await pool.query('select name, lastName, accountType from Usuarios where username = ?',[username]);
     if(rows.length>0){
       const user = rows[0];
       res.send(user); 

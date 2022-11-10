@@ -13,7 +13,7 @@ const {
 router.route('/auth')
       .post(logIn);
 
-router.route('/auth')
+router.route('/auth/:username')
       .get(userType);
 
 router.route('/auth/apply')

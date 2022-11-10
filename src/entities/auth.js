@@ -88,10 +88,24 @@ const userType = async(req, res) => {
     }
 }
 
+const applyToOferta = async(req, res) => {
+    const username = req.body.username;
+    const id = req.body.Ofertas.id;
+    const rows = await pool.query('select Usuarios.name, Ofertas.title from Usuarios, Ofertas where Usuarios.username = ? and Ofertas.id = ?',
+    [username,id]);
+    if(rows.length>0){
+      res.send(true); 
+    }
+    else{
+      res.send(false);
+    }
+}
+
 module.exports = {
     changePassword,
     createUser,
     sendCodeNumber,
     logIn,
-    userType
+    userType,
+    applyToOferta
 }

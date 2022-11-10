@@ -115,4 +115,6 @@ module.exports = {
     deleteOferta,
     getOfertas,
     updateOferta,
+    getOfertasByCategory,
+    getOrganizationList
 }

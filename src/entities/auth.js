@@ -76,12 +76,11 @@ const logIn = async(req, res) => {
 }
 
 const userType = async(req, res) => {
-    const name = req.body.name;
-    const lastName = req.body.lastName;
-    const rows = await pool.query('select accountType from Usuarios where name = ? and lastName = ?',[name,lastName]);
+    const username = req.body.username;
+    const rows = await pool.query('select name, accountType from Usuarios where username = ?',[username]);
     if(rows.length>0){
       const user = rows[0];
-      res.send(user.accountType); 
+      res.send(user); 
     }
     else{
       res.send(false);

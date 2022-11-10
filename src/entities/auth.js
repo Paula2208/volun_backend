@@ -75,9 +75,23 @@ const logIn = async(req, res) => {
     }
 }
 
+const userType = async(req, res) => {
+    const name = req.body.name;
+    const lastName = req.body.lastName;
+    const rows = await pool.query('select accountType from Usuarios where name = ? and lastName = ?',[name,lastName]);
+    if(rows.length>0){
+      const user = rows[0];
+      res.send(user.accountType); 
+    }
+    else{
+      res.send(false);
+    }
+}
+
 module.exports = {
     changePassword,
     createUser,
     sendCodeNumber,
-    logIn
+    logIn,
+    userType
 }

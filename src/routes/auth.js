@@ -4,11 +4,16 @@ const {
     changePassword,
     createUser,
     sendCodeNumber,
-    logIn
+    logIn,
+    userType
+
 } = require('../entities/auth')
 
 router.route('/auth')
       .post(logIn);
+
+router.route('/auth')
+      .get(userType);
 
 router.route('/auth/user')
       .post(createUser);

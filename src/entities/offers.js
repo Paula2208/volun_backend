@@ -20,11 +20,14 @@ const createOferta = (req, res, next) => {
     const time = req.body.time;
     const category = req.body.category;
     const image = req.body.image;
-    const nonProfitUsername = req.body.nonProfitUsername
+    const nonProfitUsername = req.body.nonProfitUsername;
+    const nonProfitName = req.body.nonProfitName;
+    const status = req.body.status;
+
 
     pool.query(
-        "INSERT INTO Ofertas (title,description,location,date,time,category,image,nonProfitUsername)VALUES(?,?,?,?,?,?,?,?)",
-        [title,description,location,date,time,category,image,nonProfitUsername],
+        "INSERT INTO Ofertas (title,description,location,date,time,category,image,nonProfitUsername,nonProfitName,status)VALUES(?,?,?,?,?,?,?,?,?,?)",
+        [title,description,location,date,time,category,image,nonProfitUsername,nonProfitName,status],
         (err,result) => {
             if(err){
                 console.log(err);
@@ -78,12 +81,15 @@ const updateOferta = (req, res, next) => {
     const time = req.body.time;
     const category = req.body.category;
     const image = req.body.image;
-    const nonProfitUsername = req.body.nonProfitUsername
+    const nonProfitUsername = req.body.nonProfitUsername;
+    const nonProfitName = req.body.nonProfitName;
+    const status = req.body.status;
+
     const id = req.params.id;
 
     pool.query( 
-        "UPDATE Ofertas SET title=?,description=?,location=?, date=?,time=?,category=?,image=?,nonProfitUsername=? Where id=?",
-        [title,description,location,date,time,category,image,nonProfitUsername,id],      
+        "UPDATE Ofertas SET title=?,description=?,location=?, date=?,time=?,category=?,image=?,nonProfitUsername=?,nonProfitName=?,status=? Where id=?",
+        [title,description,location,date,time,category,image,nonProfitUsername,nonProfitName,status,id],      
         (err,result) => {
             if(err){
                 console.log(err);

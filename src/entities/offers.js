@@ -20,11 +20,14 @@ const createOferta = (req, res, next) => {
     const time = req.body.time;
     const category = req.body.category;
     const image = req.body.image;
-    const nonProfitUsername = req.body.nonProfitUsername
+    const nonProfitUsername = req.body.nonProfitUsername;
+    const nonProfitName = req.body.nonProfitName;
+    const status = req.body.status;
+
 
     pool.query(
-        "INSERT INTO Ofertas (title,description,location,date,time,category,image,nonProfitUsername)VALUES(?,?,?,?,?,?,?,?)",
-        [title,description,location,date,time,category,image,nonProfitUsername],
+        "INSERT INTO Ofertas (title,description,location,date,time,category,image,nonProfitUsername,nonProfitName,status)VALUES(?,?,?,?,?,?,?,?,?,?)",
+        [title,description,location,date,time,category,image,nonProfitUsername,nonProfitName,status],
         (err,result) => {
             if(err){
                 console.log(err);
@@ -58,9 +61,20 @@ const getOfertas = async(req, res) => {
 
 }
 
+const getOfertasByCategory = async(req, res) => {
+    const category = req.params.category;
+    pool.query("SELECT * FROM Ofertas where category=?", category, (err,result) => {
+        if (err){
+            console.log(err)
+        } else {
+            res.send(result)
+        }
+    })
+
+}
+
 const getOrganizationList = async(req, res) => {
-    const category = req.params.id;
-    pool.query("SELECT * FROM Ofertas where category=?",[category], (err,result) => {
+    pool.query("SELECT nonProfitName FROM Ofertas", (err,result) => {
         if (err){
             console.log(err)
         } else {
@@ -78,12 +92,15 @@ const updateOferta = (req, res, next) => {
     const time = req.body.time;
     const category = req.body.category;
     const image = req.body.image;
-    const nonProfitUsername = req.body.nonProfitUsername
+    const nonProfitUsername = req.body.nonProfitUsername;
+    const nonProfitName = req.body.nonProfitName;
+    const status = req.body.status;
+
     const id = req.params.id;
 
     pool.query( 
-        "UPDATE Ofertas SET title=?,description=?,location=?, date=?,time=?,category=?,image=?,nonProfitUsername=? Where id=?",
-        [title,description,location,date,time,category,image,nonProfitUsername,id],      
+        "UPDATE Ofertas SET title=?,description=?,location=?, date=?,time=?,category=?,image=?,nonProfitUsername=?,nonProfitName=?,status=? Where id=?",
+        [title,description,location,date,time,category,image,nonProfitUsername,nonProfitName,status,id],      
         (err,result) => {
             if(err){
                 console.log(err);
@@ -98,4 +115,6 @@ module.exports = {
     deleteOferta,
     getOfertas,
     updateOferta,
+    getOfertasByCategory,
+    getOrganizationList
 }

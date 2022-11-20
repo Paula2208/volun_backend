@@ -1,7 +1,7 @@
 
 const express = require('express');
 const cors = require('cors')
-const jwt = require('jsonwebtoken');
+
 const app = express();
 const nodemailer=require("nodemailer")
 
@@ -48,11 +48,10 @@ app.get('/', function (req, res) {
 module.exports = app;
 const createTrans=()=>{
   var transport = nodemailer.createTransport({
-    host: "smtp.mailtrap.io",
-    port: 2525,
+    service: 'gmail',
     auth: {
-      user: "0dbb026b1f812b",
-      pass: "b0667b02828026"
+      user: "voltunt@gmail.com",
+      pass: "gcwtvoettuetliix"
     }
   });
   return transport;
@@ -146,47 +145,24 @@ app.post('/forgot-password',async(req,res)=>{
       
         const codigo=[]
         
+        
         for (var i = 0; i < 5; i++) {     
           codigo.push(banco.charAt(Math.floor(Math.random() * banco.length))
           )   
           
   
-        }console.log(codigo.join(""))
+        }const stcodigo=(codigo.join(""))        
+        console.log(stcodigo)
         
-      sendMail(req.body.email,codigo)
-      
-
+      sendMail(req.body.email,stcodigo)
+      conexion.query('update codigo set codigo = "'+stcodigo+'" where idcodigo ='+iduser,function(error,results){
+        if(error){
+          console.log(error)
+        }
+      })
 
       res.json({"Exito":"codigo enviado exitosamente"})
-      app.get('/forgot-password',async(req,res)=>{
-        const code=req.body.code
-        console.log(code)
-        if(code==codigo.join("")){
-          res.json({"Exito":"codigo correcto"})
-          app.put('/forgot-password',async(req,res)=>{
-            const clave="'"+req.body.clave+"'"
-            const confirmacion="'"+req.body.confirmacion+"'"
-            if(clave==confirmacion){
-              console.log(iduser)
-              conexion.query('UPDATE users SET Pass='+clave+' WHERE idUsers='+iduser,function(error,results){
-                if(error){
-                    console.log(error)
       
-                }else{
-                    console.log("cambio exitoso")
-                    res.json({"Exito":"cambio exitoso"})
-                }
-                })
-
-            }else{
-              res.json({"error":"clave no coincide"})
-            }
-          })
-        }else{
-          res.json({"Error":"codigo incorrecto"})
-        }
-        
-      })
 
       }else{
         res.json({"Error":"email errado"})
@@ -194,4 +170,51 @@ app.post('/forgot-password',async(req,res)=>{
 
     }
   })
+})
+
+app.get('/forgot-password',async(req,res)=>{
+  const code=req.body.code
+  console.log(code)
+  conexion.query('SELECT idcodigo from codigo where codigo="'+code+'"',function(error,results){
+    if(error){
+      console.log(error)
+    }else{
+      if(results!=""){
+        idcode=results[0]
+        idcode=idcode.idcodigo
+        res.json({"Exito":"codigo correcto","iduser":idcode})
+        
+        conexion.query('update codigo set codigo =NULL where idcodigo ='+idcode,function(error,results){
+          if(error){
+            console.log(error)
+          }
+        } )
+        
+      }else{
+        res.json({"Error":"codigo incorrecto"}) 
+      }
+    }
+  })
+  
+  
+})
+app.put('/forgot-password',async(req,res)=>{
+  const clave="'"+req.body.clave+"'"
+  const confirmacion="'"+req.body.confirmacion+"'"
+  const iduser=req.body.iduser
+  if(clave==confirmacion){
+    console.log(iduser)
+    conexion.query('UPDATE users SET Pass='+clave+' WHERE idUsers='+iduser,function(error,results){
+      if(error){
+          console.log(error)
+
+      }else{
+          console.log("cambio exitoso")
+          res.json({"Exito":"cambio exitoso"})
+      }
+      })
+
+  }else{
+    res.json({"error":"clave no coincide"})
+  }
 })

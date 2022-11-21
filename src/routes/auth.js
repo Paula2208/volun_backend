@@ -1,9 +1,10 @@
 const router = require('express').Router();
 
 const {
-    changePassword,
+    forgotPassword,
     createUser,
     sendCodeNumber,
+    sendMail,
     logIn,
     userType,
     applyToOferta
@@ -22,10 +23,11 @@ router.route('/auth/apply')
 router.route('/auth/user')
       .post(createUser);
 
-router.route('/auth/forgotPassword')
-      .get(sendCodeNumber);
 
+router.route('/auth/forgotPassword')
+      .post(forgotPassword);
+/*
 router.route('/auth/forgotPassword')
       .post(changePassword);
-
+*/
 module.exports = router;

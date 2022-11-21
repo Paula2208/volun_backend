@@ -1,65 +1,74 @@
 [
   {
-    "name": "Angie",
-    "lastName": "Velosa",
-    "email": "avelosa@mail.com",
-    "cellphoneNumber": "3214568778",
-    "password": "1234",
-    "accountType": "Estudiante",
-    "username": "avelosa"
-  },
-  {
     "name": "Danny",
     "lastName": "Acosta",
     "email": "dacosta@mail.com",
     "cellphoneNumber": "3024572881",
+    "username": "dacosta",
     "password": "12345",
-    "accountType": "Voluntario",
-    "username": "dacosta"
+    "accountType": "Voluntario"
   },
   {
-    "name": "dylan ",
+    "name": "dylan",
     "lastName": "rivero",
     "email": "dmriveroe@gmail.com",
-    "cellphoneNumber": "3232887384",
+    "cellphoneNumber": "3232887333",
+    "username": "dmriveroe",
     "password": "test123",
-    "accountType": "Voluntario",
-    "username": "dmriveroe"
+    "accountType": "Voluntario"
   },
   {
-    "name": "fdss",
-    "lastName": "fsdfsdf",
-    "email": "sdfs",
-    "cellphoneNumber": "dfsdfsd",
-    "password": "dfsdf",
-    "accountType": "sdfsdfsd",
-    "username": "fsdfs"
+    "name": "Mateo",
+    "lastName": "Herrera",
+    "email": "maherreramu@gmail.com",
+    "cellphoneNumber": "5555555555",
+    "username": "maherreramu",
+    "password": "ma1234",
+    "accountType": "VOLUNTEER"
   },
   {
-    "name": "pepito",
-    "lastName": "perez",
-    "email": "p@hmail.com",
-    "cellphoneNumber": "554556456",
-    "password": "1234",
-    "accountType": "voluntario",
-    "username": "pepito"
+    "name": "Fundación",
+    "lastName": "Rojas",
+    "email": "rojas@gmail.com",
+    "cellphoneNumber": "1234556",
+    "username": "org1",
+    "password": "12345",
+    "accountType": "NON_PROFIT"
   },
   {
-    "name": "test4",
-    "lastName": "test4",
-    "email": "test4",
-    "cellphoneNumber": "test4",
-    "password": "test4",
-    "accountType": "Voluntario",
-    "username": "test4"
+    "name": "Fundación",
+    "lastName": "Patitas Suaves",
+    "email": "1234@gmail.com",
+    "cellphoneNumber": "1234567",
+    "username": "org2",
+    "password": "12345",
+    "accountType": "NON_PROFIT"
   },
   {
-    "name": "test5",
-    "lastName": "test5",
-    "email": "test5",
-    "cellphoneNumber": "test5",
-    "password": "test5",
-    "accountType": "test5",
-    "username": "test5"
+    "name": "Paula1",
+    "lastName": "Last1",
+    "email": "1234@gmail.com",
+    "cellphoneNumber": "12345678",
+    "username": "pau1",
+    "password": "12345",
+    "accountType": "VOLUNTEER"
+  },
+  {
+    "name": "rest",
+    "lastName": "api",
+    "email": "rest@gmail.com",
+    "cellphoneNumber": "test",
+    "username": "restapi",
+    "password": "test123",
+    "accountType": "Voluntario"
+  },
+  {
+    "name": "Viviene",
+    "lastName": "Hearon",
+    "email": "vhearon0@aboutads.info",
+    "cellphoneNumber": "4958121269",
+    "username": "vhearon0",
+    "password": "HLgOxZ3LQr",
+    "accountType": "VOLUNTEER"
   }
 ]

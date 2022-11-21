@@ -10,8 +10,15 @@
 //
 //
 // -- This is a parent command --
+Cypress.Commands.add('get_alert_message', (message) => {
+    cy.get('.Toastify__toast-body')
+        .should('have.text', message)
+        .should('be.visible')
+        .click();
+})
+
 Cypress.Commands.add('login', (user, password) => {
-    cy.visit('http://localhost:8000');  
+    cy.visit(Cypress.env('home_url'));  
     cy.get('[type="text"]').click().clear().type(user);
     cy.get('[type="password"]').click().clear().type(password);
     cy.get('.Login-btn-login').click();
@@ -38,15 +45,38 @@ Cypress.Commands.add('forgotPasswordTypeNewPsw' ,(password) => {
     cy.get('.ForgotPassword-input[placeholder="Enter your New Password"]').type(password);
 })
 
-Cypress.Commands.add('fill_signup_form', (user) => {
-    cy.get('[placeholder="First Name*"]').click().clear().type(user.first_name);
-    cy.get('[placeholder="Last Name*"]').click().clear().type(user.last_name);
+Cypress.Commands.add('signup_form', (user) => {
+    cy.get('[placeholder="First Name*"]').click().clear().type(user.name);
+    cy.get('[placeholder="Last Name*"]').click().clear().type(user.lastName);
     cy.get('[placeholder="Email*"]').click().clear().type(user.email);
-    cy.get('[placeholder="Phonenumber*"]').click().clear().type(user.phone_number);
+    cy.get('[placeholder="Phonenumber*"]').click().clear().type(user.cellphoneNumber);
     cy.get('[placeholder="Username*"]').click().clear().type(user.username);
     cy.get('[placeholder="Password*"]').click().clear().type(user.password);
-    cy.get('[placeholder="Select user type*"]').click().clear().type(user.user_type);
+    cy.get('.Signup-select').select(user.accountType);
     cy.get(':nth-child(5) > :nth-child(1)').click();
+})
+
+Cypress.Commands.add('signup_form_incomplete', (user) => {
+    cy.get(':nth-child(5) > :nth-child(1)').click();
+    cy.get_alert_message('Please add a name');
+    cy.get('[placeholder="First Name*"]').click().clear().type(user.name);
+    cy.get(':nth-child(5) > :nth-child(1)').click();
+    cy.get_alert_message('Please add a last name');
+    cy.get('[placeholder="Last Name*"]').click().clear().type(user.lastName);
+    cy.get(':nth-child(5) > :nth-child(1)').click();
+    cy.get_alert_message('Please add an email');
+    cy.get('[placeholder="Email*"]').click().clear().type(user.email);
+    cy.get(':nth-child(5) > :nth-child(1)').click();
+    cy.get_alert_message('Please add a cell phone number');
+    cy.get('[placeholder="Phonenumber*"]').click().clear().type(user.cellphoneNumber);
+    cy.get(':nth-child(5) > :nth-child(1)').click();
+    cy.get_alert_message('Please add a username');
+    cy.get('[placeholder="Username*"]').click().clear().type(user.username);
+    cy.get(':nth-child(5) > :nth-child(1)').click();
+    cy.get_alert_message('Please add a password');
+    cy.get('[placeholder="Password*"]').click().clear().type(user.password);
+    cy.get(':nth-child(5) > :nth-child(1)').click();
+    cy.get_alert_message('Please select an account type');
 })
 //
 //

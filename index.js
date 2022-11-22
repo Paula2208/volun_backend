@@ -68,24 +68,24 @@ const sendMail = async (correo,codigo) =>{
   return
 }
 
-var mysql = require('mysql');
-const { post } = require('./src/routes/auth');
-var conexion = mysql.createConnection({
-    host: 'localhost',
-    database: 'userdatabase',
-    user: 'root',
-    password: '_root123'
-})
+// var mysql = require('mysql');
+// const { post } = require('./src/routes/auth');
+// var conexion = mysql.createConnection({
+//     host: 'localhost',
+//     database: 'userdatabase',
+//     user: 'root',
+//     password: '_root123'
+// })
 
-conexion.connect(function(error){
-    if(error){
-        throw error;
+// conexion.connect(function(error){
+//     if(error){
+//         throw error;
 
-    }else{
-        console.log('conexion exitosa')
-    }
+//     }else{
+//         console.log('conexion exitosa')
+//     }
 
-});
+// });
 app.post('/pass',async(req,res)=>{
   const username = "'"+req.body.user+"'";
   const pass=req.body.pass;

@@ -6,12 +6,12 @@ const {
 router.route('/')
       .get(functionTemplate);
 
-router.route('/postReportsActive')
+router.route('/postReportsActive/:postId')
       .get(postReportsActive);
 
 router.route('/postReportsPending')
       .get(postReportsPending);  
       
-      router.route('/postReportsDenied')
+router.route('/postReportsDenied')
       .get(postReportsDenied);
 module.exports = router;

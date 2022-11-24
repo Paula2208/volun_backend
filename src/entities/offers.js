@@ -63,7 +63,7 @@ const getOfertas = async(req, res) => {
 
 const getOfertasByCategory = async(req, res) => {
     const category = req.params.category;
-    pool.query("SELECT * FROM Ofertas where category=?", category, (err,result) => {
+    pool.query("SELECT * FROM Ofertas where category=?",category, (err,result) => {
         if (err){
             console.log(err)
         } else {

@@ -9,9 +9,9 @@ router.route('/')
 router.route('/postReportsActive/:postId')
       .get(postReportsActive);
 
-router.route('/postReportsPending')
+router.route('/postReportsPending/:postId')
       .get(postReportsPending);  
       
-router.route('/postReportsDenied')
+router.route('/postReportsDenied/:postId')
       .get(postReportsDenied);
 module.exports = router;

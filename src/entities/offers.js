@@ -1,17 +1,5 @@
 const pool = require('../database');
 
-const functionTemplate = (req, res, next) => {
-
-    const body = req.body;
-    const query= req.query;
-    
-    res.json({
-        body,
-        query
-    })
-    res.status(201).send();
-}
-
 const createOferta = (req, res, next) => {
     const title = req.body.title;
     const description = req.body.description;
@@ -94,7 +82,7 @@ const updateOferta = (req, res, next) => {
     const image = req.body.image;
     const nonProfitUsername = req.body.nonProfitUsername;
     const nonProfitName = req.body.nonProfitName;
-    const status = req.body.status;
+    const status = 1;
 
     const id = req.params.id;
 

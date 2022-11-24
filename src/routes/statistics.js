@@ -1,12 +1,12 @@
 const router = require('express').Router();
 const {
-    functionTemplate, getNumberOfPosts, getNumberOfNonProfits
+    getNumberOfPosts, getNumberOfUserType
 } = require('../entities/statistics')
 
-router.route('/getNumberOfPosts')
+router.route('/statistics/getNumberOfPosts')
       .get(getNumberOfPosts);
 
-router.route('/getNumberOfNonProfits')
-      .get(getNumberOfNonProfits);      
+router.route('/statistics/getNumberOfUserType')
+      .get(getNumberOfUserType);      
 
 module.exports = router;

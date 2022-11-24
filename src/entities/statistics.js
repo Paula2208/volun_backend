@@ -13,7 +13,7 @@ const functionTemplate = (req, res, next) => {
 
 
 const getNumberOfPosts  = async(req, res) => {
-    pool.query("SELECT COUNT(*) FROM Ofertas", (err,result) => {
+    pool.query("SELECT COUNT(*) as posts FROM Ofertas", (err,result) => {
         if (err){
             console.log(err)
         } else {
@@ -27,25 +27,23 @@ const getNumberOfUserType  = async(req, res) => {
     let volunteers = 0;
 
     try {
-        org = await pool.query("SELECT COUNT(*) FROM Usuarios where accountType='NON_PROFIT'");
+        org = await pool.query("SELECT COUNT(*) as orgs FROM Usuarios where accountType='NON_PROFIT'");
     }
     catch (e) {
         res.status(500).send();
     }
 
     try {
-        volunteers = await pool.query("SELECT COUNT(*) FROM Usuarios where accountType='VOLUNTEER'");
+        volunteers = await pool.query("SELECT COUNT(*) as volunteers FROM Usuarios where accountType='VOLUNTEER'");
     }
     catch (e) {
         res.status(500).send();
     }
 
-    res.json({
+    res.send({
         orgs: org,
         volunteers: volunteers
-    })
-
-    res.status(200).send();
+    });
 }
 
 

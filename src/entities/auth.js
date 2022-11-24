@@ -200,10 +200,11 @@ const userType = async(req, res) => {
 };
 
 const applyToOferta = async(req, res) => {
-    const username = req.body.username;
-    const id = req.body.id;
-    const rows = await pool.query('select username, id, applicationStatus from Aplican where username=? and id=?',
-    [username,id]);
+    const username = req.params.username;
+    const id = req.params.id;
+    const PENDIN = 'PENDIN';
+    const rows = await pool.query('INSERT INTO Aplican (username, id, applicationStatus) VALUES (?, ?, ?)',
+    [username,id,PENDIN]);
     if(rows.length>0){
       const user =rows[0];
       res.send(user); 

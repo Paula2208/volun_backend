@@ -1,17 +1,5 @@
 const pool = require('../database');
 
-const functionTemplate = (req, res, next) => {
-
-    const body = req.body;
-    const query= req.query;
-    
-    res.json({
-        body,
-        query
-    })
-    res.status(201).send();
-}
-
 const createOferta = (req, res, next) => {
     const title = req.body.title;
     const description = req.body.description;
@@ -63,7 +51,7 @@ const getOfertas = async(req, res) => {
 
 const getOfertasByCategory = async(req, res) => {
     const category = req.params.category;
-    pool.query("SELECT * FROM Ofertas where category=?", category, (err,result) => {
+    pool.query("SELECT * FROM Ofertas where category=?",category, (err,result) => {
         if (err){
             console.log(err)
         } else {
@@ -74,7 +62,7 @@ const getOfertasByCategory = async(req, res) => {
 }
 
 const getOrganizationList = async(req, res) => {
-    pool.query("SELECT nonProfitName FROM Ofertas", (err,result) => {
+    pool.query("SELECT nonProfitName, nonProfitUsername FROM Ofertas", (err,result) => {
         if (err){
             console.log(err)
         } else {
@@ -94,7 +82,7 @@ const updateOferta = (req, res, next) => {
     const image = req.body.image;
     const nonProfitUsername = req.body.nonProfitUsername;
     const nonProfitName = req.body.nonProfitName;
-    const status = req.body.status;
+    const status = 1;
 
     const id = req.params.id;
 

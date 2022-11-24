@@ -1,14 +1,17 @@
 const router = require('express').Router();
 const {
-    functionTemplate,
-    voluteersReport
-
+    voluteersReport, postReportsActive, postReportsPending, postReportsDenied
 } = require('../entities/reports')
-
-router.route('/')
-      .get(functionTemplate);
 
 router.route('/reports')
       .get(voluteersReport);
 
+router.route('/reports/postReportsActive/:postId')
+      .get(postReportsActive);
+
+router.route('/reports/postReportsPending/:postId')
+      .get(postReportsPending);  
+      
+router.route('/reports/postReportsDenied/:postId')
+      .get(postReportsDenied);
 module.exports = router;

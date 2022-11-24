@@ -8,7 +8,7 @@ const {
 router.route('/')
       .get(functionTemplate);
 
-router.route('/reports/:id')
+router.route('/reports')
       .get(voluteersReport);
 
 module.exports = router;

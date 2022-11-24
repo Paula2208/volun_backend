@@ -6,4 +6,7 @@ const {
 router.route('/')
       .get(functionTemplate);
 
+router.route('/postReports')
+      .get(functionTemplate);
+
 module.exports = router;

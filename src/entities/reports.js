@@ -13,7 +13,7 @@ const functionTemplate = (req, res, next) => {
 
 const postReportsActive = async(req, res) => {
     const postId = req.body.postId;
-    pool.query("SELECT * FROM Aplican where id=? AND applicationStatus='Active'",postId,(err,result) => {
+    pool.query("SELECT U.name,U.lastName,A.username,A.ApplicationStatus FROM Aplican as A LEFT JOIN Usuarios as U ON A.username=U.username WHERE applicationStatus='ACTIVE' AND id=?",postId,(err,result) => {
         if (err){
             console.log(err)
         } else {
@@ -24,7 +24,7 @@ const postReportsActive = async(req, res) => {
 
 const postReportsPending = async(req, res) => {
     const postId = req.body.postId;
-    pool.query("SELECT * FROM Aplican where id=? AND applicationStatus='Pending'",postId,(err,result) => {
+    pool.query("SELECT U.name,U.lastName,A.username,A.ApplicationStatus FROM Aplican as A LEFT JOIN Usuarios as U ON A.username=U.username WHERE applicationStatus='PENDING' AND id=?",postId,(err,result) => {
         if (err){
             console.log(err)
         } else {
@@ -35,7 +35,7 @@ const postReportsPending = async(req, res) => {
 
 const postReportsDenied = async(req, res) => {
     const postId = req.body.postId;
-    pool.query("SELECT * FROM Aplican where id=? AND applicationStatus='Denied'",postId,(err,result) => {
+    pool.query("SELECT U.name,U.lastName,A.username,A.ApplicationStatus FROM Aplican as A LEFT JOIN Usuarios as U ON A.username=U.username WHERE applicationStatus='active' AND id=?",postId,(err,result) => {
         if (err){
             console.log(err)
         } else {

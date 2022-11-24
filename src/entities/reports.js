@@ -22,8 +22,9 @@ const postReportsActive = async(req, res) => {
     })
 }
 
-const getNumberOfPosts  = async(req, res) => {
-    pool.query("SELECT COUNT(*) FROM Ofertas", (err,result) => {
+const postReportsPending = async(req, res) => {
+    const postId = req.body.postId;
+    pool.query("SELECT * FROM Aplican where id=? AND applicationStatus='Pending'",postId,(err,result) => {
         if (err){
             console.log(err)
         } else {
@@ -32,7 +33,22 @@ const getNumberOfPosts  = async(req, res) => {
     })
 }
 
+const postReportsDenied = async(req, res) => {
+    const postId = req.body.postId;
+    pool.query("SELECT * FROM Aplican where id=? AND applicationStatus='Denied'",postId,(err,result) => {
+        if (err){
+            console.log(err)
+        } else {
+            res.send(result)
+        }
+    })
+}
+
+
+
 module.exports = {
     functionTemplate,
-    postReportsActive
+    postReportsActive,
+    postReportsPending,
+    postReportsDenied
 }

@@ -213,6 +213,21 @@ const applyToOferta = async(req, res) => {
     }
 };
 
+const changeStatus = async(req, res) => {
+  const applicationStatus = req.body.applicationStatus;
+  const idAplican = req.params.idAplican;
+  const rows = await pool.query('UPDATE Aplican SET applicationStatus = ? WHERE idAplican = ?',
+  [applicationStatus, idAplican]);
+  if(rows.length>0){
+    const user =rows[0];
+    res.send(user); 
+  }
+  else{
+    res.send(false);
+  }
+
+}
+
       
     
   
@@ -223,4 +238,5 @@ module.exports = {
     forgotPassword,
     userType,
     applyToOferta,
+    changeStatus,
 }

@@ -1,4 +1,4 @@
-
+const pool = require('../database');
 const functionTemplate = (req, res, next) => {
 
     const body = req.body;

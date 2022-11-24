@@ -62,7 +62,7 @@ const getOfertasByCategory = async(req, res) => {
 }
 
 const getOrganizationList = async(req, res) => {
-    pool.query("SELECT nonProfitName FROM Ofertas", (err,result) => {
+    pool.query("SELECT nonProfitName, nonProfitUsername FROM Ofertas", (err,result) => {
         if (err){
             console.log(err)
         } else {

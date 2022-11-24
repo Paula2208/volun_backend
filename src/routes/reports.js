@@ -1,9 +1,14 @@
 const router = require('express').Router();
 const {
-    functionTemplate
+    functionTemplate,
+    voluteersReport
+
 } = require('../entities/reports')
 
 router.route('/')
       .get(functionTemplate);
+
+router.route('/reports/:id')
+      .get(voluteersReport);
 
 module.exports = router;

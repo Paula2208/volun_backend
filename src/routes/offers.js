@@ -17,7 +17,7 @@ router.route('/offers/create')
 router.route('/offers/delete/:id')
       .delete(deleteOferta);  
 
-router.route('/offers/get')
+router.route('/offers/get/:username')
       .get(getOfertas);    
 
 router.route('/offers/getOfertasByCategory/:category')

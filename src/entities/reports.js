@@ -1,9 +1,9 @@
 const pool = require('../database');
 
 const voluteersReport = async(req, res) => {
-    const PENDIN = 'PENDING';
-    const ACTIVE = 'ACTIVE';
-    const DENIED = 'DENIED';
+    const PENDIN = 'pendin';
+    const ACTIVE = 'active';
+    const DENIED = 'denied';
     const rows = await pool.query(' select o.nonProfitUsername as nonProfitUsername, o.nonProfitName as nonProfitName, count(if(a.applicationStatus =? and o.id=a.id,1,NULL)) as pending, count(if(a.applicationStatus =? and o.id=a.id,1,NULL)) as active, count(if(a.applicationStatus =? and o.id=a.id,1,NULL)) as denied from Ofertas as o, Aplican as a group by o.id',
     [PENDIN, ACTIVE, DENIED]);
     if(rows.length>0){
@@ -16,7 +16,7 @@ const voluteersReport = async(req, res) => {
 
 const postReportsActive = async(req, res) => {
     const postId = req.params.postId;
-    pool.query("SELECT U.name,U.lastName,A.username,A.ApplicationStatus FROM Aplican as A LEFT JOIN Usuarios as U ON A.username=U.username WHERE applicationStatus='ACTIVE' AND id=?",postId,(err,result) => {
+    pool.query("SELECT U.name as firstname,U.lastName as lastname,A.username,A.ApplicationStatus as status FROM Aplican as A LEFT JOIN Usuarios as U ON A.username=U.username WHERE applicationStatus='active' AND id=?",postId,(err,result) => {
         if (err){
             console.log(err)
         } else {
@@ -27,7 +27,7 @@ const postReportsActive = async(req, res) => {
 
 const postReportsPending = async(req, res) => {
     const postId = req.params.postId;
-    pool.query("SELECT U.name,U.lastName,A.username,A.ApplicationStatus FROM Aplican as A LEFT JOIN Usuarios as U ON A.username=U.username WHERE applicationStatus='PENDING' AND id=?",postId,(err,result) => {
+    pool.query("SELECT U.name as firstname,U.lastName as lastname,A.username,A.ApplicationStatus as status FROM Aplican as A LEFT JOIN Usuarios as U ON A.username=U.username WHERE applicationStatus='pendin' AND id=?",postId,(err,result) => {
         if (err){
             console.log(err)
         } else {
@@ -38,7 +38,7 @@ const postReportsPending = async(req, res) => {
 
 const postReportsDenied = async(req, res) => {
     const postId = req.params.postId;
-    pool.query("SELECT U.name,U.lastName,A.username,A.ApplicationStatus FROM Aplican as A LEFT JOIN Usuarios as U ON A.username=U.username WHERE applicationStatus='DENIED' AND id=?",postId,(err,result) => {
+    pool.query("SELECT U.name as firstname,U.lastName as lastname,A.username,A.ApplicationStatus as status FROM Aplican as A LEFT JOIN Usuarios as U ON A.username=U.username WHERE applicationStatus='denied' AND id=?",postId,(err,result) => {
         if (err){
             console.log(err)
         } else {

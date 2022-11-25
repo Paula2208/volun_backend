@@ -39,13 +39,35 @@ const deleteOferta = (req, res, next) => {
 }
 
 const getOfertas = async(req, res) => {
-    pool.query("SELECT * FROM Ofertas", (err,result) => {
-        if (err){
-            console.log(err)
-        } else {
-            res.send(result)
+    const username = req.params.username;
+
+    let offerts = [];
+
+    try{
+        offerts = await pool.query("SELECT * FROM Ofertas");
+    }
+    catch(err) {
+        console.log(err);
+        res.status(500).send();
+        return
+    }
+
+    const ofertas = await Promise.all(offerts.map(async(offert) => {
+        let status = []
+        try{
+            status = await pool.query("SELECT applicationStatus as status FROM Aplican WHERE username=? AND id=?", 
+                                    [username, offert.id]);
+            
+            if(status.length === 0) status.push({status: 'any'});
         }
-    })
+        catch(err){
+            console.log(err);
+            status.push({status: 'any'});
+        }
+        return { ...offert, status: status[0].status }
+    }))
+
+    res.send(ofertas);
 
 }
 

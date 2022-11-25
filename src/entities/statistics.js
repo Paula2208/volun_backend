@@ -1,16 +1,4 @@
 const pool = require('../database');
-const functionTemplate = (req, res, next) => {
-
-    const body = req.body;
-    const query= req.query;
-    
-    res.json({
-        body,
-        query
-    })
-    res.status(201).send();
-}
-
 
 const getNumberOfPosts  = async(req, res) => {
     pool.query("SELECT COUNT(*) as posts FROM Ofertas", (err,result) => {

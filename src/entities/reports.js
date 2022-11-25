@@ -6,8 +6,24 @@ const voluteersReport = async(req, res) => {
     const DENIED = 'denied';
     const rows = await pool.query(' select o.nonProfitUsername as nonProfitUsername, o.nonProfitName as nonProfitName, count(if(a.applicationStatus =? and o.id=a.id,1,NULL)) as pending, count(if(a.applicationStatus =? and o.id=a.id,1,NULL)) as active, count(if(a.applicationStatus =? and o.id=a.id,1,NULL)) as denied from Ofertas as o, Aplican as a group by o.id',
     [PENDIN, ACTIVE, DENIED]);
+
     if(rows.length>0){
-      res.send(rows); 
+        const results = [];
+        rows.forEach((row) => {
+            if(results.findIndex((org) => org.nonProfitUsername === row.nonProfitUsername) === -1){
+                results.push(row);
+            }
+            else{
+                const i = results.findIndex((org) => org.nonProfitUsername === row.nonProfitUsername);
+                const saved = results[i];
+                results[i] = {
+                    ...saved, 
+                    pending: saved.pending + row.pending, 
+                    active: saved.active + row.active, 
+                    denied: saved.denied + row.denied};
+            }
+        })
+      res.send(results); 
     }
     else{
       res.send(false);

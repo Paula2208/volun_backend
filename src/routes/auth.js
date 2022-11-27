@@ -7,7 +7,8 @@ const {
     sendMail,
     logIn,
     userType,
-    applyToOferta
+    applyToOferta,
+    changeStatus
 
 } = require('../entities/auth')
 
@@ -20,6 +21,9 @@ router.route('/auth/:username')
 router.route('/auth/apply')
       .post(applyToOferta);
 
+router.route('/auth/apply')
+      .put(changeStatus);   
+      
 router.route('/auth/user')
       .post(createUser);
 

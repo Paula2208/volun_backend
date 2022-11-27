@@ -1,7 +1,7 @@
 describe('1-login', () => {
     beforeEach(() => {
         cy.visit(Cypress.env('home_url'));
-        cy.fixture('table').then(function(td) {
+        cy.fixture('users').then(function(td) {
           this.td = td;
         });
     })

@@ -9,7 +9,7 @@ const table = () =>{
         if (err) throw err;
         con.query("SELECT * FROM Usuarios", function (err, rows, fields) {
             if (err) throw err;
-            fs.writeFile('table.json', JSON.stringify(rows, null, 2), function (err) {
+            fs.writeFile('users.json', JSON.stringify(rows, null, 2), function (err) {
                 if (err) throw err;
             });
             //output(Object.values(JSON.parse(JSON.stringify(rows))));

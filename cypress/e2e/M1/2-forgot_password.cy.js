@@ -1,12 +1,12 @@
-describe('forgot password', () => {
+describe('2-forgot password', () => {
     beforeEach(() => {
-        cy.visit('http://localhost:8000');
-        cy.fixture('table').then(function(td){
+        cy.visit(Cypress.env('home_url'));
+        cy.fixture('users').then(function(td){
             this.td=td
         });
     });    
     
-    it('valid email valid token', () => {
+    it('1-valid email valid token', function() {
         this.td.forEach(e => {
             cy.forgotPasswordTypeEmail(e.email);
             cy.typeToken('00000');
@@ -17,7 +17,7 @@ describe('forgot password', () => {
         })
     })
 
-    it('valid email invalid token', () => {
+    it('2-valid email invalid token', function() {
         this.td.forEach(e => {
             cy.forgotPasswordTypeEmail(e.email);
             cy.typeToken('00001');
@@ -27,7 +27,7 @@ describe('forgot password', () => {
         })
     })
 
-    it('invalid email', () => {
+    it('3-invalid email', () => {
         cy.forgotPasswordTypeEmail('wrongemail@host');
         cy.get('.Toastify__toast-body')
             .should('have.text','Email not found')

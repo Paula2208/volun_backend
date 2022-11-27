@@ -1,5 +1,14 @@
 [
   {
+    "name": "VolUN",
+    "lastName": "Admin1",
+    "email": "admin1@gmail.com",
+    "cellphoneNumber": "12345678",
+    "username": "admin1",
+    "password": "12345",
+    "accountType": "ADMIN"
+  },
+  {
     "name": "Danny",
     "lastName": "Acosta",
     "email": "dacosta@mail.com",
@@ -61,14 +70,5 @@
     "username": "restapi",
     "password": "test123",
     "accountType": "Voluntario"
-  },
-  {
-    "name": "Viviene",
-    "lastName": "Hearon",
-    "email": "vhearon0@aboutads.info",
-    "cellphoneNumber": "4958121269",
-    "username": "vhearon0",
-    "password": "HLgOxZ3LQr",
-    "accountType": "VOLUNTEER"
   }
 ]

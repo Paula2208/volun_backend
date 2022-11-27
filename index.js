@@ -67,7 +67,7 @@ const sendMail = async (correo,codigo) =>{
   console.log("Message sent: %s",info.messageId)
   return
 }
-
+/*
 var mysql = require('mysql');
 const { post } = require('./src/routes/auth');
 var conexion = mysql.createConnection({
@@ -216,4 +216,4 @@ app.put('/forgot-password',async(req,res)=>{
   }else{
     res.json({"error":"clave no coincide"})
   }
-})
+})*/

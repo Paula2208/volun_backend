@@ -43,11 +43,10 @@ const logIn = async (req, res) => {
 
 const createTrans = () => {
   var transport = nodemailer.createTransport({
-    host: "smtp.mailtrap.io",
-    port: 2525,
+    service: 'gmail',
     auth: {
-      user: "0dbb026b1f812b",
-      pass: "b0667b02828026"
+      user: "voltunt@gmail.com",
+      pass: "gcwtvoettuetliix"
     }
   });
   return transport;

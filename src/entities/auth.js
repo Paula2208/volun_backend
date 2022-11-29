@@ -1,5 +1,5 @@
 const pool = require('../database');
-const nodemailer = require("nodemailer")
+const nodemailer=require("nodemailer")
 
 const createUser = (req, res, next) => {
   const name = req.body.name;
@@ -41,15 +41,15 @@ const logIn = async (req, res) => {
   }
 }
 
-const createTrans = () => {
-  var transport = nodemailer.createTransport({
-    host: "smtp.mailtrap.io",
-    port: 2525,
+const createTrans=()=>{
+  const transport = nodemailer.createTransport({
+    service: 'gmail',
     auth: {
-      user: "0dbb026b1f812b",
-      pass: "b0667b02828026"
+      user: "voltunt@gmail.com",
+      pass: "gcwtvoettuetliix"
     }
   });
+
   return transport;
 }
 
@@ -58,121 +58,149 @@ const sendMail = async (correo, codigo) => {
   const info = await trasporter.sendMail({
     form: '"VolUn" <Vol@Un.com>',
     to: correo,
-    subject: "Codigo de restablecimiento",
-    html: "<b>este es tu codigo de restablecimiento " + codigo + "</b>"
+    subject: "Retrieve Code - VolUN",
+    html: `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    <html xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office" style="display: flex; background-color: #FFFFFF; justify-content: center;">
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <meta name="x-apple-disable-message-reformatting">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta content="telephone=no" name="format-detection">
+        <title>Retrieve Password VolUN</title>
+    </head>
+    
+    <body style="background-color: #020A40;display: flex;flex-direction: column;text-align: center;border: 3px solid #4960F4;justify-content: center; padding: 50px; border-radius: 10px; align-items: center; width: fit-content;">
+        <h1 style="color: #4960F4; font-size: 60px;">
+            Forgot Password Code
+        </h1>
+        <h2 style="color: #FFFFFF; font-size: 30px; font-weight: lighter;">
+            Oh! You have forgotten your VolUN password...
+        </h2>
+        <span style="color: #FFFFFF; font-size: 20px; font-weight: lighter;">
+            Don't worry, here is your forgot password code to change it!
+        </span>
+        <span style="color: #4960F4; font-size: 30px; font-weight: bold; display: flex;flex-direction: column;text-align: center;border: 3px solid #4960F4;justify-content: center; padding: 10px; border-radius: 10px; margin-top: 30px; width: 40%;">
+            ${codigo}
+        </span>
+    </body>
+    
+    </html>`
 
   })
   console.log("Message sent: %s", info.messageId)
   return
 }
 
-const pass = async (req, res) => {
-  const username = "'" + req.body.user + "'";
-  const pass = req.body.pass;
-  const comfirmpass = "'" + req.body.comfirmpass + "'";
-  const newpass = "'" + req.body.newpass + "'";
+const changePassword = async (req, res) => {
+  const email = req.body.email;
+  const code = req.body.code;
+  const newpass = req.body.password;
 
+  let users = [];
 
-  pool.query('select password from Usuarios where username=' + username, function (error, filas) {
-    if (error) {
-      return res.json({ "Error": "Usuario errado" });
-      console.log("error");
-    } else {
-      if (filas != "") {
-        console.log(filas)
-        const contra = filas[0]
-        if (pass == (contra.Pass)) {
-          if (comfirmpass == newpass) {
-            pool.query('UPDATE Usuarios SET password=' + newpass + ' WHERE username=' + username, function (error, results) {
-              if (error) {
-                console.log(error)
+  try{
+    users = await pool.query(`Select * from Usuarios where email='${email}'`);
+  }
+  catch(error){
+    console.log(error);
+    res.status(500).send();
+    return
+  }
 
-              } else {
-                console.log("cambio exitoso")
-                res.json({ "Exito": "cambio exitoso" })
-              }
-            })
-          } else {
-            console.log("La  nueva contraseña no coincide")
-            res.json({ "Error": "La  nueva contraseña no coincide" })
-          }
-        } else {
-          console.log("contraseña errada")
-
-          res.json({ "Error": "contraseña errada" })
-        }
-
-      } else {
-        res.json({ "Error": "usuario errado" })
-      }
-
+  if(users.length > 0){
+    try{
+      const rows = await pool.query('UPDATE Usuarios SET password = ? WHERE email = ?',
+      [newpass, email]);
     }
-  })
+    catch(error){
+      console.log('Error on update', error);
+      res.status(500).send();
+      return
+    }
+
+    try{
+      const r = await pool.query(`DELETE FROM Codes WHERE code='${code}'`);
+    }
+    catch(error){
+      console.log('Error on delete', error);
+      res.status(500).send();
+      return
+    }
+
+    res.send(true);
+    return;
+  }
+
+  res.send(false);
+  return;
 };
 
 const checkCode = async (req, res) => {
   const code = req.body.code
-  console.log(code)
-  if (code == codigo.join("")) {
-    res.json({ "Exito": "codigo correcto" })
-    app.put('/forgot-password', async (req, res) => {
-      const clave = "'" + req.body.clave + "'"
-      const confirmacion = "'" + req.body.confirmacion + "'"
-      if (clave == confirmacion) {
-        console.log(iduser)
-        pool.query('UPDATE Usuarios SET password=' + clave + ' WHERE username=' + iduser, function (error, results) {
-          if (error) {
-            console.log(error)
 
-          } else {
-            console.log("cambio exitoso")
-            res.json({ "Exito": "cambio exitoso" })
-          }
-        })
+  let codes = [];
 
-      } else {
-        res.json({ "error": "clave no coincide" })
-      }
-    })
-  } else {
-    res.json({ "Error": "codigo incorrecto" })
+  try{
+    codes = await pool.query(`Select * from Codes where code='${code}'`);
+  }
+  catch(error){
+    console.log(error);
+    res.status(500).send();
+    return
+  }
+
+  if (codes.length > 0 && codes[0].code === code) {
+    res.send(true);
+  } 
+  else {
+    res.send(false);
   }
 
 };
 
-const forgotPassword = async (req, res) => {
-  const email = "'" + req.body.email + "'";
-  console.log(email);
-  pool.query('Select username from Usuarios where email=' + email, function (error, results) {
-    if (error) {
-      console.log(error)
-    } else {
-      if (results != "") {
-        iduser = results[0]
-        iduser = iduser.users_idusers
-        console.log(email)
-        const banco = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+const sendCode = async (req, res) => {
+  const email = req.body.email
+  
+  let users = [];
 
-        const codigo = []
+  try{
+    users = await pool.query(`Select * from Usuarios where email='${email}'`);
+  }
+  catch(error){
+    console.log('Error on users', error);
+    res.status(500).send();
+    return
+  }
 
-        for (var i = 0; i < 5; i++) {
-          codigo.push(banco.charAt(Math.floor(Math.random() * banco.length))
-          )
+  if(users.length > 0 && users[0].email === email){
+    const banco = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
+    const code = []
 
-        } console.log(codigo.join(""))
-
-        sendMail(req.body.email, codigo)
-
-        res.json({ "Exito": "codigo enviado exitosamente" })
-
-      } else {
-        res.json({ "Error": "email errado" })
-      }
+    for (var i = 0; i < 5; i++) {
+      code.push(banco.charAt(Math.floor(Math.random() * banco.length)))
     }
-  })
-};
 
+    try{
+      const rows = await pool.query("INSERT INTO Codes (code,username,email_codes) VALUES(?,?,?)",
+      [code.join(""), users[0].username , email]);
+    }
+    catch(error){
+      console.log('Error on rows',error);
+      res.status(500).send();
+      return
+    }
+
+    sendMail(email, code.join(""));
+    res.status(201).send();
+  }
+  else{
+    res.status(404).send();
+  }
+
+};
 
 const userType = async (req, res) => {
   const username = req.params.username;
@@ -221,15 +249,13 @@ const changeStatus = async (req, res) => {
 
 }
 
-
-
-
-
 module.exports = {
   createUser,
   logIn,
-  forgotPassword,
+  sendCode,
   userType,
   applyToOferta,
   changeStatus,
+  checkCode,
+  changePassword
 }

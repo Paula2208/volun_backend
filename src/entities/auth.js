@@ -15,7 +15,12 @@ const createUser = (req, res, next) => {
     [name, lastName, email, cellphoneNumber, username, password, accountType],
     (err, result) => {
       if (err) {
-        console.log(err);
+        if(err.sqlMessage.includes('Duplicate entry')){
+          res.status(400).send('Username or email already in use.');
+        }
+        else{
+          res.status(500).send(err);
+        }
       } else {
         res.send("Values inserted");
       }

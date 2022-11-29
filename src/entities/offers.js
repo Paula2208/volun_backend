@@ -25,17 +25,28 @@ const createOferta = (req, res, next) => {
         });
 }
 
-const deleteOferta = (req, res, next) => {
+const deleteOferta = async (req, res, next) => {
     const id = req.params.id;
-    pool.query(
-        "DELETE FROM Ofertas WHERE id= ?",id,
-        (err,result) => {
-            if(err){
-                console.log(err);
-            } else {
-                res.send("Post deleted");
-            }
-        });
+
+    try{
+        const deleteForeing = await pool.query("DELETE FROM Aplican WHERE id=?", [id]);
+    }
+    catch(err) {
+        console.log(err);
+        res.status(500).send();
+        return
+    }
+
+    try{
+        const deleteOfert = await pool.query("DELETE FROM Ofertas WHERE id= ?",[id]);
+    }
+    catch(err) {
+        console.log(err);
+        res.status(500).send();
+        return
+    }
+
+    res.status(200).send();
 }
 
 const getOfertas = async(req, res) => {

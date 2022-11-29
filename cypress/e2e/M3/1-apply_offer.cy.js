@@ -1,4 +1,4 @@
-const ap_user = ["maherreramu", "password"];
+const ap_user = ["dacosta", "12345"];
 const np_user = ["org1", "12345"];
 
 describe('1-apply-offer', () => { 

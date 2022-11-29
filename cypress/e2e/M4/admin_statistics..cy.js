@@ -5,8 +5,9 @@ describe('admin statistics', () => {
     });
     
     it('see_statistics', () => {
-        cy.login(admin[0], admin[1])
-        cy.get('.FeedLayout-statisticsButton > span').click();
+        cy.login(admin[0], admin[1]);
+        cy.url().should('include', '/app');
+        cy.get('.FeedLayout-statisticsButton').click();
         cy.get('.ModalStatistics-container');
     });
 })

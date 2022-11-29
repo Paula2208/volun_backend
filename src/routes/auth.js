@@ -1,15 +1,14 @@
 const router = require('express').Router();
 
 const {
-    forgotPassword,
+    sendCode,
     createUser,
-    sendCodeNumber,
-    sendMail,
     logIn,
     userType,
     applyToOferta,
-    changeStatus
-
+    changeStatus,
+    checkCode,
+    changePassword
 } = require('../entities/auth')
 
 router.route('/auth')
@@ -28,10 +27,13 @@ router.route('/auth/user')
       .post(createUser);
 
 
-router.route('/auth/forgotPassword')
-      .post(forgotPassword);
-/*
-router.route('/auth/forgotPassword')
+router.route('/auth/send-code-forgot')
+      .post(sendCode);
+
+router.route('/auth/check-code-forgot')
+      .post(checkCode);
+
+router.route('/auth/retrieve-password')
       .post(changePassword);
-*/
+
 module.exports = router;

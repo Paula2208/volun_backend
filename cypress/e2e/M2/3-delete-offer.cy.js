@@ -13,7 +13,7 @@ describe('3-delete-offer', () => {
         cy.login(this.n_user[0].username, this.n_user[0].password);
         cy.get(':nth-child(2) > .Post-Title').should('have.text', 'Test Post 1').click();
         cy.get('.delete').click();
-        cy.get_alert_message('Post deleted.')
+        cy.get_alert_message('Post deleted.');
     });
 
     it('2-delete_offer_admin', function() {
@@ -24,9 +24,9 @@ describe('3-delete-offer', () => {
     });
 
     it('3-delete_offer_non_creator_user', function() {
-        /*cy.login(this.n_user[1].username, this.n_user[1].password);
+        cy.login(this.n_user[1].username, this.n_user[1].password);
         cy.get(':nth-child(2) > .Post-Title').should('have.text', 'Test Post 1').click();
         cy.get('.delete').click();
-        cy.get_alert_message('Post not deleted.')*/
+        cy.get_alert_message('Post not deleted.')
     });
  })

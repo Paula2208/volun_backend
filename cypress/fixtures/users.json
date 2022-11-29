@@ -15,7 +15,7 @@
     "cellphoneNumber": "3024572881",
     "username": "dacosta",
     "password": "12345",
-    "accountType": "Voluntario"
+    "accountType": "VOLUNTEER"
   },
   {
     "name": "dylan",
@@ -24,15 +24,15 @@
     "cellphoneNumber": "3232887333",
     "username": "dmriveroe",
     "password": "test123",
-    "accountType": "Voluntario"
+    "accountType": "VOLUNTEER"
   },
   {
     "name": "Mateo",
     "lastName": "Herrera",
-    "email": "maherreramu@gmail.com",
+    "email": "maherreramu@unal.edu.co",
     "cellphoneNumber": "5555555555",
     "username": "maherreramu",
-    "password": "ma1234",
+    "password": "password",
     "accountType": "VOLUNTEER"
   },
   {
@@ -45,11 +45,11 @@
     "accountType": "NON_PROFIT"
   },
   {
-    "name": "Fundación",
-    "lastName": "Patitas Suaves",
-    "email": "1234@gmail.com",
-    "cellphoneNumber": "1234567",
-    "username": "org2",
+    "name": "Non Profit",
+    "lastName": "Cotorras",
+    "email": "org3@gmail.com",
+    "cellphoneNumber": "12345678",
+    "username": "org3",
     "password": "12345",
     "accountType": "NON_PROFIT"
   },
@@ -63,12 +63,39 @@
     "accountType": "VOLUNTEER"
   },
   {
+    "name": "Pau2",
+    "lastName": "LastNAme2",
+    "email": "pau2@gmail.com",
+    "cellphoneNumber": "123456789",
+    "username": "pau2",
+    "password": "12345",
+    "accountType": "VOLUNTEER"
+  },
+  {
     "name": "rest",
     "lastName": "api",
     "email": "rest@gmail.com",
     "cellphoneNumber": "test",
     "username": "restapi",
     "password": "test123",
-    "accountType": "Voluntario"
+    "accountType": "VOLUNTEER"
+  },
+  {
+    "name": "TryForgot",
+    "lastName": "1",
+    "email": "mewoyon925@rubeshi.com",
+    "cellphoneNumber": "12345678",
+    "username": "tryforgot1",
+    "password": "12345",
+    "accountType": "VOLUNTEER"
+  },
+  {
+    "name": "TryForgot",
+    "lastName": "2",
+    "email": "wsdh.ancya97@tijux.com",
+    "cellphoneNumber": "1234567",
+    "username": "tryforgot2",
+    "password": "12345",
+    "accountType": "VOLUNTEER"
   }
 ]

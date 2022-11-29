@@ -1,19 +1,19 @@
 [
   {
     "name": "Fundación",
-    "lastName": "Patitas Suaves",
-    "email": "1234@gmail.com",
-    "cellphoneNumber": "1234567",
-    "username": "org2",
-    "password": "12345",
-    "accountType": "NON_PROFIT"
-  },
-  {
-    "name": "Fundación",
     "lastName": "Rojas",
     "email": "rojas@gmail.com",
     "cellphoneNumber": "1234556",
     "username": "org1",
+    "password": "12345",
+    "accountType": "NON_PROFIT"
+  },
+  {
+    "name": "Non Profit",
+    "lastName": "Cotorras",
+    "email": "org3@gmail.com",
+    "cellphoneNumber": "12345678",
+    "username": "org3",
     "password": "12345",
     "accountType": "NON_PROFIT"
   }

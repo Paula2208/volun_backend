@@ -43,6 +43,7 @@ Cypress.Commands.add('typeToken', (token) => {
 Cypress.Commands.add('forgotPasswordTypeNewPsw' ,(password) => {
     cy.get('.ForgotPassword-input[placeholder="Enter your New Password"]').should('be.visible');
     cy.get('.ForgotPassword-input[placeholder="Enter your New Password"]').type(password);
+    cy.get('.ForgotPassword-btn-send').click();
 })
 
 Cypress.Commands.add('signup_form', (user) => {
